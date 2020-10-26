@@ -9,11 +9,11 @@ namespace Web_IIOT_Back.Models
     {
         public int Id { get; set; }
 
-        public int Temperature { get; set; }
+        public double Temperature { get; set; }
 
-        public int Humidity { get; set; }
+        public double Humidity { get; set; }
 
-        public int Pressure { get; set; }
+        public double Pressure { get; set; }
 
         public bool Relay { get; set; }
 

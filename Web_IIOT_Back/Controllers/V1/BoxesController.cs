@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 using Web_IIOT_Back.Models;
 using Web_IIOT_Back.Services;
 using System.Text.Json;
+using Microsoft.AspNetCore.Cors;
 
 namespace Web_IIOT_Back.Controllers.V1
 {
+    //[EnableCors]
     [Produces("application/json")]
     [Consumes("application/json")]
     [Route("api/V1/[controller]")]

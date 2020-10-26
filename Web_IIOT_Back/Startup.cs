@@ -14,6 +14,10 @@ using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.OpenApi.Models;
 using Web_IIOT_Back.Project_Configuration;
 using Web_IIOT_Back.Services;
+using Microsoft.EntityFrameworkCore;
+using Web_IIOT_Back.Models;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Controllers_Layer;
 
 namespace Web_IIOT_Back
 {
@@ -29,13 +33,19 @@ namespace Web_IIOT_Back
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddControllers();
 
+            services.Configure<KestrelServerOptions>(
+                    Configuration.GetSection("Kestrel"));
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(sw =>
             {
-                sw.SwaggerDoc("v1", new     OpenApiInfo
-                { Title = "Core API", Description = "Web Service For IIOT Maquette", Version = "v1",
+                sw.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Core API",
+                    Description = "Web Service For IIOT Maquette",
+                    Version = "v1",
                     Contact = new OpenApiContact
                     {
                         Name = "Ivan Tsekhavoi",
@@ -47,12 +57,22 @@ namespace Web_IIOT_Back
                 // Set the comments path for the Swagger JSON and UI.
                 var xmlPath = System.AppDomain.CurrentDomain.BaseDirectory + @"Web_IIOT_Back.xml";
                 sw.IncludeXmlComments(xmlPath);
-
-                
             }
             );
 
             services.AddSingleton<IBoxService, BoxService>();
+            services.AddSingleton<IPeripheryService, PeripheryService>();
+
+            services.AddSingleton<IInitControllersLayerService, InitControllersLayerService>();
+            services.AddSingleton<Logic>();
+
+
+            //use if there an existing db server
+
+            //services.AddDbContext<BoxContext>(opt =>
+            //opt.UseInMemoryDatabase("Name Of The Db"));
+            //services.AddDbContext<PeripheryContext>(opt =>
+            //opt.UseSqlite("Name Of The Db"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,6 +88,9 @@ namespace Web_IIOT_Back
             app.UseRouting();
 
             app.UseAuthorization();
+
+            //CORS
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseEndpoints(endpoints =>
             {
@@ -86,8 +109,11 @@ namespace Web_IIOT_Back
             app.UseSwaggerUI(sw =>
             {
                 sw.SwaggerEndpoint(swaggerInitialConfiguration.UiEndPoint, swaggerInitialConfiguration.ApiDescription);
-                sw.RoutePrefix = string.Empty;
             });
+
+            //Frontend Part
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
         }
     }
 }

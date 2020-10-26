@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web_IIOT_Back", "Web_IIOT_Back\Web_IIOT_Back.csproj", "{A81F1E09-839D-48EC-9780-EA56BBF38BE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web_IIOT_Back", "Web_IIOT_Back\Web_IIOT_Back.csproj", "{A81F1E09-839D-48EC-9780-EA56BBF38BE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controllers Layer", "Controllers Layer\Controllers Layer.csproj", "{F9A076B7-6DEE-44D9-9D7F-C817D80C212F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{A81F1E09-839D-48EC-9780-EA56BBF38BE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A81F1E09-839D-48EC-9780-EA56BBF38BE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A81F1E09-839D-48EC-9780-EA56BBF38BE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9A076B7-6DEE-44D9-9D7F-C817D80C212F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9A076B7-6DEE-44D9-9D7F-C817D80C212F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9A076B7-6DEE-44D9-9D7F-C817D80C212F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9A076B7-6DEE-44D9-9D7F-C817D80C212F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
